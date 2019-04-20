@@ -1,14 +1,15 @@
 """Testing image caption generator"""
 import textwrap
-import numpy as np
+import requests
+from io import BytesIO
 from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
 
-def main():
+def importer(url):
     """Why do we even need main function in python?"""
-    imagefile = "test.jpg"
-    image = Image.open(imagefile).convert('RGBA')
+    response = requests.get(url)
+    image = Image.open(BytesIO(response.content)).convert('RGBA')
     image = cropper(image, 512)
     text(image)
 
@@ -36,7 +37,7 @@ def cropper(image, targetsize):
 
 def text(image):
     W, H = 512, 512
-    top_y = 30
+    top_y = 15
     low_y = 400
     fillcolor = "yellow"
     shadowcolor = "black"
@@ -56,7 +57,7 @@ def text(image):
     para = textwrap.wrap(low_text, width=50)
     current_h, pad = 350, 10
 
-    font = ImageFont.truetype("‪‪C:\Windows\Fonts\DB Helvethaica X Med v3.2.ttf",35)
+    font = ImageFont.truetype("‪‪C:\Windows\Fonts\DB Helvethaica X Med v3.2.ttf", 35)
     for line in para:
         w, h = draw.textsize(line, font=font)
         draw.text((((W - w) / 2)-1, current_h), line, font=font, fill=shadowcolor)
@@ -65,12 +66,7 @@ def text(image):
         draw.text(((W - w) / 2, current_h+1), line, font=font, fill=shadowcolor)
         draw.text(((W - w) / 2, current_h), line, font=font, fill=fillcolor)
         current_h += h + pad
-    # draw.text((((W-w)/2)-1, low_y), low_text, font=font, fill=shadowcolor)
-    # draw.text((((W-w)/2)+1, low_y), low_text, font=font, fill=shadowcolor)
-    # draw.text((((W-w)/2), low_y-1), low_text, font=font, fill=shadowcolor)
-    # draw.text((((W-w)/2), low_y+1), low_text, font=font, fill=shadowcolor)
-    # draw.text(((W-w)/2, low_y), low_text, font=font, fill=fillcolor)
     image.convert('RGB').save('output.jpg')
 
 
-main()
+importer(input())
