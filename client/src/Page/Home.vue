@@ -1,29 +1,44 @@
 <template>
 	<div class="home">
-		<div class="container">
-			<h1>Home</h1>
-			<h2>Welcome {{ this.msg }}!</h2>
-			<input type="text" v-model="msg">
-		</div>
-		<div class="container bg-red">
-			1234567890
-		</div>
+  <Navbar></Navbar>
+  <div class="container-fluid">
+    <img src="../assets/flower_ex.jpg" height="50%" width="100%">
+  </div>
+  <div class="container card">
+    <h3 style="font-size:3vw;">สวัสดี</h3>
+    <span style="font-size:8vw;">{{ msg }}</span>
+  </div>
 	</div>
 </template>
 
 <script>
+import Navbar from "@/components/navbar.vue";
 export default {
   name: 'Home',
   data() {
     return {
-      msg: 'Icys',
+      msg: 'วันจันทร์',
     };
+  },
+  components: {
+    Navbar,
   }
 };
 </script>
+<style scoped>
+  body {
+    background-image: url("../assets/bg_gold.gif");
+  }
 
-<style scoped lang="scss">
-	.bg-red {
-		background: red;
-	}
+  .card{
+    width: 30%;
+    background-color: black;
+    color: white;
+    position: absolute;
+    bottom: 30%;
+    left: 60%;
+    height: auto;
+  }
 </style>
+
+
