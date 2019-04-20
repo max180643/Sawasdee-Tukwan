@@ -9,9 +9,7 @@ def main():
     """Why do we even need main function in python?"""
     imagefile = "test.jpg"
     image = Image.open(imagefile).convert('RGBA')
-    print("Input the width or height for 1:1 size here:")
-    targetsize = int(input())
-    image = cropper(image, targetsize)
+    image = cropper(image, 512)
     text(image)
 
 def cropper(image, targetsize):
@@ -40,25 +38,38 @@ def text(image):
     W, H = 512, 512
     top_y = 30
     low_y = 400
-    low_text = "ตื่นมาเช้านี้ สิ่งไม่ดีจงหมดไป คิดทำอะไร ให้รํ่ารวยทันใจ รวยไปตลอดกาล"
-    text = " สวัสดีวันจันทร์ "
     fillcolor = "yellow"
     shadowcolor = "black"
     draw = ImageDraw.Draw(image)
 
-    font = ImageFont.truetype("‪C:\Windows\Fonts\Kanit-SemiBold.ttf",50)
-    w, h = draw.textsize(text, font=font)
-    draw.text((((W-w)/2)-1, top_y), text, font=font, fill=shadowcolor)
-    draw.text((((W-w)/2)+1, top_y), text, font=font, fill=shadowcolor)
-    draw.text((((W-w)/2), top_y-1), text, font=font, fill=shadowcolor)
-    draw.text((((W-w)/2), top_y+1), text, font=font, fill=shadowcolor)
-    draw.text(((W-w)/2, top_y), text, font=font, fill=fillcolor)
+    text = " วันพฤหัสบดี "
 
-    draw.text((((W-w)/2)-1, low_y), low_text, font=font, fill=shadowcolor)
-    draw.text((((W-w)/2)+1, low_y), low_text, font=font, fill=shadowcolor)
-    draw.text((((W-w)/2), low_y-1), low_text, font=font, fill=shadowcolor)
-    draw.text((((W-w)/2), low_y+1), low_text, font=font, fill=shadowcolor)
-    draw.text(((W-w)/2, low_y), low_text, font=font, fill=fillcolor)
+    headerfont = ImageFont.truetype("‪‪C:\Windows\Fonts\DB Helvethaica X Blk v3.2.ttf",90)
+    w, h = draw.textsize(text, font=headerfont)
+    draw.text((((W-w)/2)-1, top_y), text, font=headerfont, fill=shadowcolor)
+    draw.text((((W-w)/2)+1, top_y), text, font=headerfont, fill=shadowcolor)
+    draw.text((((W-w)/2), top_y-1), text, font=headerfont, fill=shadowcolor)
+    draw.text((((W-w)/2), top_y+1), text, font=headerfont, fill=shadowcolor)
+    draw.text(((W-w)/2, top_y), text, font=headerfont, fill=fillcolor)
+
+    low_text = "ผู้ชายไม่ได้ต้องการนางฟ้า แต่ ต้องการ คนที่มีเวลาให้กัน ... ผู้หญิงไม่ได้ต้องการเทพบุตร แต่ ต้องการ คนที่หยุดสักที "
+    para = textwrap.wrap(low_text, width=50)
+    current_h, pad = 350, 10
+
+    font = ImageFont.truetype("‪‪C:\Windows\Fonts\DB Helvethaica X Med v3.2.ttf",35)
+    for line in para:
+        w, h = draw.textsize(line, font=font)
+        draw.text((((W - w) / 2)-1, current_h), line, font=font, fill=shadowcolor)
+        draw.text((((W - w) / 2)+1, current_h), line, font=font, fill=shadowcolor)
+        draw.text(((W - w) / 2, current_h-1), line, font=font, fill=shadowcolor)
+        draw.text(((W - w) / 2, current_h+1), line, font=font, fill=shadowcolor)
+        draw.text(((W - w) / 2, current_h), line, font=font, fill=fillcolor)
+        current_h += h + pad
+    # draw.text((((W-w)/2)-1, low_y), low_text, font=font, fill=shadowcolor)
+    # draw.text((((W-w)/2)+1, low_y), low_text, font=font, fill=shadowcolor)
+    # draw.text((((W-w)/2), low_y-1), low_text, font=font, fill=shadowcolor)
+    # draw.text((((W-w)/2), low_y+1), low_text, font=font, fill=shadowcolor)
+    # draw.text(((W-w)/2, low_y), low_text, font=font, fill=fillcolor)
     image.convert('RGB').save('output.jpg')
 
 
