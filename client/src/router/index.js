@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/page/Home';
-import Show from '@/page/Show';
+import Random from '@/page/Random';
 import Custom from '@/page/Custom';
 import Ping from '@/components/Ping';
 
@@ -21,9 +21,9 @@ export default new Router({
       component: Ping,
     },
     {
-      path: '/show',
-      name: 'Show',
-      component: Show,
+      path: '/random',
+      name: 'Random',
+      component: Random,
     },
     {
       path: '/custom',

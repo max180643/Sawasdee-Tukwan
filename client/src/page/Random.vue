@@ -9,7 +9,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'Show',
+  name: 'Random',
   data() {
     return {
     	url: '',
