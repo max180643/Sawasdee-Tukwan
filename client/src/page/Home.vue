@@ -1,44 +1,34 @@
 <template>
 	<div class="home">
-  <Navbar></Navbar>
-  <div class="container-fluid">
-    <img src="../assets/flower_ex.jpg" height="50%" width="100%">
-  </div>
-  <div class="container card">
-    <h3 style="font-size:3vw;">สวัสดี</h3>
-    <span style="font-size:8vw;">{{ msg }}</span>
-  </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 v-if="date == 0">วันที่ 0</h1>
+          <h1 v-else-if="date == 1">วันที่ 1</h1>
+          <h1 v-else-if="date == 2">วันที่ 2</h1>
+          <h1 v-else-if="date == 3">วันที่ 3</h1>
+          <h1 v-else-if="date == 4">วันที่ 4</h1>
+          <h1 v-else-if="date == 5">วันที่ 5</h1>
+          <h1 v-else-if="date == 6">วันที่ 6</h1>
+        </div>
+      </div>
+    </div>
 	</div>
 </template>
 
 <script>
-import Navbar from "@/components/navbar.vue";
+import moment from 'moment';
 export default {
   name: 'Home',
   data() {
     return {
-      msg: 'วันจันทร์',
-    };
+      date: new Date().getDay()
+    }
   },
-  components: {
-    Navbar,
-  }
 };
 </script>
 <style scoped>
-  body {
-    background-image: url("../assets/bg_gold.gif");
-  }
-
-  .card{
-    width: 30%;
-    background-color: black;
-    color: white;
-    position: absolute;
-    bottom: 30%;
-    left: 60%;
-    height: auto;
-  }
+  
 </style>
 
 

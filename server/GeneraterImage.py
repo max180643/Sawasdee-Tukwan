@@ -69,5 +69,5 @@ class GenerateImage:
         self.img = self.img.convert('RGB')
 
 if __name__ == '__main__':
-    obj = GenerateImage("https://picsum.photos/512/512?random=1")
+    obj = GenerateImage("https://picsum.photos/512/512?random=1", 512)
     obj.img.save('test.jpg')

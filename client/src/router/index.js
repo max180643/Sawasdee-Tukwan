@@ -12,23 +12,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home,
     },
     {
-      path: '/ping',
-      name: 'Ping',
-      component: Ping,
+      path: '/custom',
+      name: 'custom',
+      component: Custom,
     },
     {
       path: '/random',
-      name: 'Random',
+      name: 'random',
       component: Random,
     },
-    {
-      path: '/custom',
-      name: 'Custom',
-      component: Custom,
-    }
   ],
 });
