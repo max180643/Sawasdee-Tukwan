@@ -8,19 +8,21 @@ from PIL import ImageDraw
 
 def importer(url):
     """Why do we even need main function in python?"""
+    print("Enter desired resolution below.")
+    resolution = int(input())
     response = requests.get(url)
     image = Image.open(BytesIO(response.content)).convert('RGBA')
-    image = cropper(image, 512)
-    text(image)
+    image = cropper(image, resolution)
+    text(image, resolution)
 
 def cropper(image, targetsize):
     """oofio"""
     width, height = image.size
     if width <= height:
-        re_width, re_height = 512, (width/height) / 512
+        re_width, re_height = targetsize, (width/height) / targetsize
         image = image.resize((int(re_width), int(re_width)), Image.ANTIALIAS)
     elif height < width:
-        re_width, re_height = (width/height) * 512, 512
+        re_width, re_height = (width/height) * targetsize, targetsize
         image = image.resize((int(re_width), int(re_height)), Image.ANTIALIAS)
     width, height = image.size
     print(width, height)
@@ -35,8 +37,8 @@ def cropper(image, targetsize):
     image = image.crop((left, top, right, bottom))
     return image
 
-def text(image):
-    W, H = 512, 512
+def text(image, resolution):
+    W, H = resolution, resolution
     top_y = 15
     low_y = 400
     fillcolor = "yellow"
@@ -45,7 +47,7 @@ def text(image):
 
     text = " วันพฤหัสบดี "
 
-    headerfont = ImageFont.truetype("‪‪C:\Windows\Fonts\DB Helvethaica X Blk v3.2.ttf",90)
+    headerfont = ImageFont.truetype("‪‪C:\Users\James\AppData\Local\Microsoft\Windows\Fonts\Sriracha-Regular.ttf",90)
     w, h = draw.textsize(text, font=headerfont)
     draw.text((((W-w)/2)-1, top_y), text, font=headerfont, fill=shadowcolor)
     draw.text((((W-w)/2)+1, top_y), text, font=headerfont, fill=shadowcolor)
@@ -57,7 +59,7 @@ def text(image):
     para = textwrap.wrap(low_text, width=50)
     current_h, pad = 350, 10
 
-    font = ImageFont.truetype("‪‪C:\Windows\Fonts\DB Helvethaica X Med v3.2.ttf", 35)
+    font = ImageFont.truetype("‪‪C:\Windows\Fonts\DSNYWR_.TTF", 35)
     for line in para:
         w, h = draw.textsize(line, font=font)
         draw.text((((W - w) / 2)-1, current_h), line, font=font, fill=shadowcolor)
