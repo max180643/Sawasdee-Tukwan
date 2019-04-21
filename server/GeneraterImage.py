@@ -2,6 +2,8 @@
 import textwrap
 import requests
 import PIL
+import csv
+from random import choice
 from io import BytesIO
 from PIL import ImageFont
 from PIL import Image
@@ -38,14 +40,21 @@ class GenerateImage:
     def addText(self, msg=None):
         # TODO: """แก้ x parameter ด้วยจ้า"""
         x = int(input())
-        wanweek = ["อาทิตย์ ", "จันทร์ " , "อังคาร ", "พุธ ", "พฤหัสบดี ", "ศุกร์ ", "เสาร์ "]
-        fillcolor = ["#F00", "#FF0", "#FC0FC0", "#7CFC00", "#FFA500", "#00BFFF", "#8A2BE2"]
-        shadowcolor = ["#fff", "#000", "#fff", "#000", "#000", "#000", "#fff"]
+        wanweek = ["อาทิตย์ ", "จันทร์ " , "อังคาร ", "พุธ ", "พฤหัสบดี ", "ศุกร์ ", "เสาร์ ", "วาเลนไทน์ "]
+        fillcolor = ["#F00", "#FF0", "#FC0FC0", "#7CFC00", "#FFA500", "#00BFFF", "#8A2BE2", "#FFB6C1"]
+        shadowcolor = ["#fff", "#000", "#fff", "#000", "#000", "#000", "#fff", "#F00"]
         W, H = self.size, self.size
         top_y = int(15 * self.ratio)
         low_y = int(400 * self.ratio)
         draw = ImageDraw.Draw(self.img)
 
+        datasetpath = str(x) + ".csv"
+
+        with open(datasetpath) as f:
+            reader = csv.reader(f)
+            low_text = choice(list(reader)) if not msg else msg
+
+        low_text = low_text + " "
         text = " สวัสดีวัน" + wanweek[x]
 
         headerfont = ImageFont.truetype("‪‪font/Pattaya-Regular.ttf", int(84 * self.ratio))
@@ -56,7 +65,7 @@ class GenerateImage:
         draw.text((((W-w)/2), top_y+1), text, font=headerfont, fill=shadowcolor[x])
         draw.text(((W-w)/2, top_y), text, font=headerfont, fill=fillcolor[x])
 
-        low_text = "ผู้ชายไม่ได้ต้องการนางฟ้า แต่ ต้องการ คนที่มีเวลาให้กัน ... ผู้หญิงไม่ได้ต้องการเทพบุตร แต่ ต้องการ คนที่หยุดสักที " if not msg else msg
+        # low_text = "ผู้ชายไม่ได้ต้องการนางฟ้า แต่ ต้องการ คนที่มีเวลาให้กัน ... ผู้หญิงไม่ได้ต้องการเทพบุตร แต่ ต้องการ คนที่หยุดสักที " if not msg else msg
         para = textwrap.wrap(low_text, width=36)
         current_h, pad = int(350 * self.ratio), 10
 
