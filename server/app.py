@@ -80,6 +80,7 @@ def customImage():
 @app.route("/api/predictImage", methods=["GET","POST"])
 def predict():
 	size = request.args.get('size')
+	encode = request.args.get('encode') if request.args.get('encode') else 'jpeg'
 	label_arr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 	img = GenerateImage("https://loremflickr.com/%s/%s/flower" % (size, size), size)
 	data = img.img.getdata()
