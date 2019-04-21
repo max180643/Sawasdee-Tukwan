@@ -17,7 +17,7 @@ export default {
     };
   },
   methods: {
-    getMessage() {
+    getRandomImage() {
       const path = 'http://localhost:5000/api/randomImage?size=512&encode=png';
       axios.get(path)
         .then((res) => {
@@ -35,7 +35,7 @@ export default {
     },
   },
   created() {
-    this.getMessage();
+    this.getRandomImage();
   },
 };
 </script>

@@ -29,7 +29,7 @@ def api_version():
 def randomImage():
 	size = request.args.get('size')
 	encode = request.args.get('encode') if request.args.get('encode') else 'jpeg' 
-	url = "https://picsum.photos/%s/%s?random=1" % (size, size)
+	url = "https://loremflickr.com/%s/%s/flower" % (size, size)
 	image_obj = GenerateImage(url, size)
 	image_obj.addText()
 	image_de = serveImage(image_obj.img, encode)
