@@ -32,10 +32,11 @@ class GenerateImage:
             ratio = width / height
             image = image.resize((int(targetsize * ratio), targetsize), PIL.Image.BICUBIC)
             to_crop = int((image.size[1] - targetsize) / 2)
-            image = image.crop((0, to_crop, image.size[0], image.size[1] - to_crop))        
+            image = image.crop((0, to_crop, image.size[0], image.size[1] - to_crop))
         return image
 
     def addText(self, msg=None):
+        wanweek = ["อาทิตย์ ", "จันทร์ " , "อังคาร ", "พุธ ", "พฤหัสบดี ", "ศุกร์ ", "เสาร์ "]
         W, H = self.size, self.size
         top_y = int(15 * self.ratio)
         low_y = int(400 * self.ratio)
@@ -43,7 +44,7 @@ class GenerateImage:
         shadowcolor = "black"
         draw = ImageDraw.Draw(self.img)
 
-        text = " วันพฤหัสบดี "
+        text = " สวัสดีวัน" +
 
         headerfont = ImageFont.truetype("‪‪font/Pattaya-Regular.ttf", int(84 * self.ratio))
         w, h = draw.textsize(text, font=headerfont)
