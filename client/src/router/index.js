@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/page/Home';
+import Today from '@/page/Today';
 import Random from '@/page/Random';
 import Custom from '@/page/Custom';
 import Ping from '@/components/Ping';
@@ -22,6 +23,11 @@ export default new Router({
     },
     {
       path: '/today',
+      name: 'today',
+      component: Today,
+    },
+    {
+      path: '/random',
       name: 'random',
       component: Random,
     },

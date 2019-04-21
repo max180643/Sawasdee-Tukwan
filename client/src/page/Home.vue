@@ -17,23 +17,49 @@
         </div>
       </div>
     </div>
+    <div class="container-fluid whoami">
+			<div class="col align-self-center">
+				<h3>{{ this.msg }}</h3>
+			</div>
+    </div>
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
 import moment from 'moment';
 export default {
   name: 'Home',
   data() {
     return {
-      date: new Date().getDay()
+      date: new Date().getDay(),
+      msg: "สวัสดีจ้าาาาาา"
     }
+  },
+  methods: {
+    getRandomImage() {
+      const path = 'http://localhost:5000/api/getRandomText';
+      axios.get(path)
+        .then((res) => {
+          this.msg = res.data.msg;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
+    },
+  },
+  mounted() {
+  	this.getRandomText();
   },
 };
 </script>
 <style scoped>
 	.text {
 		background: white;
+	}
+	.whoami {
+		padding-top: 20px;
 	}
 	.cover {
 		height: 100%;

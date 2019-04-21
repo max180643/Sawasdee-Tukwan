@@ -8,6 +8,7 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/today">Today</b-nav-item>
           <b-nav-item to="/custom">Customize</b-nav-item>
+          <b-nav-item to="/random">Random</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

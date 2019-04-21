@@ -16,6 +16,9 @@ class GenerateImage:
         self.day = day # [Sunday, Monday, ..., Friday, Saturday]
         self.ratio = self.size / 512
 
+    def setDay(day):
+        self.day = day
+
     def generateImage(self, url, size):
         """Why do we even need main function in python?"""
         response = requests.get(url)

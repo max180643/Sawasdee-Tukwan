@@ -1,5 +1,5 @@
 <template>
-  <div class="random container">
+  <div class="today container">
     <h1 v-if="!url">Loading...</h1>
     <div v-else class="container">
       <img :src="url">
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     getRandomImage() {
-      const path = 'http://localhost:5000/api/predictImage?size=512&encode=png';
+      const path = 'http://localhost:5000/api/randomImage?size=512&encode=png';
       axios.get(path)
         .then((res) => {
           console.log(res.data);
@@ -44,7 +44,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.random {
+.today {
   padding-top: 10px;
 }
 h1, h2 {

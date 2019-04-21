@@ -1,5 +1,6 @@
 import base64
 import datetime
+import random
 from io import BytesIO
 from GeneraterImage import GenerateImage
 from flask import Flask, jsonify, request
@@ -76,14 +77,29 @@ def customImage():
 				   type=encode,
 				   size=[size, size])
 
-@app.route("/predict", methods=["GET","POST"])
+@app.route("/api/predictImage", methods=["GET","POST"])
 def predict():
 	size = request.args.get('size')
 	label_arr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 	img = GenerateImage("https://loremflickr.com/%s/%s/flower" % (size, size), size)
-	img = np.array(img).reshape(-1, 500, 500, 3)
-	result = model.predict(img.reshape(-1, 500, 500, 3))
-	result_class = label_arr[np.argmax(result)]
+	data = img.img.getdata()
+	data = np.array(data).reshape(-1, 500, 500, 3)
+	result = model.predict(data.reshape(-1, 500, 500, 3))
+	#result_class = label_arr[np.argmax(result)]
+	img.setDay(np.argmax(result))
+	img.addText()
+	return jsonify(base64=base64.b64encode(image_de).decode('utf-8'),
+				   type=encode,
+				   size=[size, size])
+
+@app.route("/api/getRandomText", methods=["GET", "POST"])
+def getText():
+	datasetpath = "../csv/" + str(random.randint(0, 7)) + ".csv"
+    with open(datasetpath, encoding="utf-8") as f:
+        reader = csv.reader(f)
+        low_text = choice(list(reader)) if not msg else msg
+    low_text = ''.join(low_text)
+    return jsonify(low_text)
 
 def serveImage(image, encode):
     img_io = BytesIO()
