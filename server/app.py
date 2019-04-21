@@ -1,7 +1,7 @@
 import base64
-from io import BytesIO, StringIO
+from io import BytesIO
 from GeneraterImage import GenerateImage
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # configuration
@@ -33,10 +33,6 @@ def randomImage():
 	image_obj = GenerateImage(url, size)
 	image_obj.addText()
 	image_de = serveImage(image_obj.img, encode)
-	#image_bstr = image_de.read()
-	#image_str = image_bstr.encode('UTF-8')
-	#image_ = ("<img src='data:image/%s;base64," % encode) + base64.b64encode(image_de).decode('utf-8') + "'/>" 
-
 	return jsonify(base64=base64.b64encode(image_de).decode('utf-8'),
 				   type=encode,
 				   size=[size, size])
@@ -50,10 +46,6 @@ def customImage():
 	image_obj = GenerateImage(url, size)
 	image_obj.addText(msg)
 	image_de = serveImage(image_obj.img, encode)
-	#image_bstr = image_de.read()
-	#image_str = image_bstr.encode('UTF-8')
-	#image_ = ("<img src='data:image/%s;base64," % encode) + base64.b64encode(image_de).decode('utf-8') + "'/>" 
-
 	return jsonify(base64=base64.b64encode(image_de).decode('utf-8'),
 				   type=encode,
 				   size=[size, size])
