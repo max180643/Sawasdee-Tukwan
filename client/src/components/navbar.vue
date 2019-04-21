@@ -1,49 +1,37 @@
 <template>
-  <div class="container fixed-top full-width">
-    <nav class="navbar navbar-expand-lg navbar-light bg-gold">
-      <a class="navbar-brand" href="#">
-        <img src="../assets/goldFlower-removebg.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        SAWASDEE TUKWAN
-      </a>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Random</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Custom</a>
-          </li>
-        </ul>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </nav>
-  </div>
+  <b-container class="full-width">
+    <b-navbar toggleable="lg" type="light" variant="light">
+      <b-navbar-brand href="#"><img src="../assets/myLogo.png" alt="SAWASDEE TUKWAN">SAWASDEE TUKWAN</b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#">Home</b-nav-item>
+          <b-nav-item href="#">Today</b-nav-item>
+          <b-nav-item href="#">Customize</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </b-container>
 </template>
 
 <script>
-  export default {
+    export default {
     data() {
       return 0;
     }
   }
-
 </script>
 
 <style scoped>
-  .bg-gold {
-    background-image: linear-gradient(to right, #f9e782, #fbe86d, #fde856, #fee93a, #ffe900);
-  }
-
-  .full-width {
+    .full-width {
     width: 100%;
     min-width: 100%;
     padding: 0;
   }
 
+    img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
 </style>
