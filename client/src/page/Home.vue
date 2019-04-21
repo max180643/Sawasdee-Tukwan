@@ -1,15 +1,19 @@
 <template>
 	<div class="home">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h1 v-if="date == 0">วันที่ 0</h1>
-          <h1 v-else-if="date == 1">วันที่ 1</h1>
-          <h1 v-else-if="date == 2">วันที่ 2</h1>
-          <h1 v-else-if="date == 3">วันที่ 3</h1>
-          <h1 v-else-if="date == 4">วันที่ 4</h1>
-          <h1 v-else-if="date == 5">วันที่ 5</h1>
-          <h1 v-else-if="date == 6">วันที่ 6</h1>
+    <div class="container-fluid full-cover">
+      <div class="row cover">
+        <div class="col align-self-center">
+        	<h1>
+        		<span class="text">สวัสดี
+		          <span v-if="date == 0">วันอาทิตย์</span>
+		          <span v-else-if="date == 1">วันจันทร์</span>
+		          <span v-else-if="date == 2">วันอังคาร</span>
+		          <span v-else-if="date == 3">วันพุธ</span>
+		          <span v-else-if="date == 4">วันพฤหัสบดี</span>
+		          <span v-else-if="date == 5">วันศุกร์</span>
+		          <span v-else-if="date == 6">วันเสาร์</span>
+	        	</span>
+	        </h1>
         </div>
       </div>
     </div>
@@ -28,7 +32,18 @@ export default {
 };
 </script>
 <style scoped>
-  
+	.text {
+		background: white;
+	}
+	.cover {
+		height: 100%;
+	}
+  .full-cover {
+  	background: url("https://loremflickr.com/1024/512/flower");
+  	background-size: cover;
+  	background-repeat: no-repeat;
+  	height: 48vh;
+  }
 </style>
 
 

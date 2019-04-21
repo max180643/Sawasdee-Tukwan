@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container custom">
     <div class="form-group">
       <input type="text" class="form-control" v-model:value="msg">
       <div class="row">
@@ -10,7 +10,7 @@
           <h4>Size: <span>{{ this.size }}</span></h4>
         </div>
       </div>
-      <button @click="getCustomImage(msg, size)">Render</button>
+      <button type="button" class="btn btn-success" @click="getCustomImage(msg, size)">Render</button>
     </div>
     <div class="container" v-if="url">
       <img :src="url" download="sawandee.jpg"></div>
@@ -51,6 +51,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.custom {
+  padding-top: 10px;
+}
 h1, h2 {
   font-weight: normal;
 }

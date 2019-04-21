@@ -1,4 +1,5 @@
 import base64
+import datetime
 from io import BytesIO
 from GeneraterImage import GenerateImage
 from flask import Flask, jsonify, request
@@ -27,10 +28,14 @@ def api_version():
 
 @app.route('/api/randomImage', methods=['GET'])
 def randomImage():
+	day = datetime.datetime.today().weekday() + 1
+	if (day == 7):
+		day = 0
+
 	size = request.args.get('size')
 	encode = request.args.get('encode') if request.args.get('encode') else 'jpeg' 
 	url = "https://loremflickr.com/%s/%s/flower" % (size, size)
-	image_obj = GenerateImage(url, size)
+	image_obj = GenerateImage(url, size, day)
 	image_obj.addText()
 	image_de = serveImage(image_obj.img, encode)
 	return jsonify(base64=base64.b64encode(image_de).decode('utf-8'),
@@ -39,11 +44,15 @@ def randomImage():
 
 @app.route('/api/customImage', methods=['GET'])
 def customImage():
+	day = datetime.datetime.today().weekday() + 1
+	if (day == 7):
+		day = 0
+
 	msg = request.args.get('msg')
 	size = request.args.get('size')
 	encode = request.args.get('encode') if request.args.get('encode') else 'jpeg' 
 	url = "https://loremflickr.com/%s/%s/flower" % (size, size)
-	image_obj = GenerateImage(url, size)
+	image_obj = GenerateImage(url, size, day)
 	image_obj.addText(msg)
 	image_de = serveImage(image_obj.img, encode)
 	return jsonify(base64=base64.b64encode(image_de).decode('utf-8'),

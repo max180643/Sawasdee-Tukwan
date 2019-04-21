@@ -21,7 +21,7 @@ export default new Router({
       component: Custom,
     },
     {
-      path: '/random',
+      path: '/today',
       name: 'random',
       component: Random,
     },

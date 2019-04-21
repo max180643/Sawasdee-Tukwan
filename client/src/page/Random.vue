@@ -1,7 +1,9 @@
 <template>
-  <div class="container">
-    <img :src="url">
-    <h3>Size {{ this.size[0] + ' x ' + this.size[1] }}</h3>
+  <div class="random container">
+    <h1 v-if="!url">Loading...</h1>
+    <div v-else class="container">
+      <img :src="url">
+    </div>
   </div>
 </template>
 
@@ -42,6 +44,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.random {
+  padding-top: 10px;
+}
 h1, h2 {
   font-weight: normal;
 }
