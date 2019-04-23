@@ -1,2 +1,2 @@
-# The Stupid Hackathon Thailand #3
+# Sawasdee Tukwan
 The Stupid Hackathon Thailand #3
